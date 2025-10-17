@@ -11,15 +11,58 @@ const linkRoutes = require('./routes/linkRoutes');
 
 const app = express();
 const server = http.createServer(app);
+
+// Configure CORS for both development and production
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // List of allowed origins
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'http://localhost:3000',
+      'https://68f2c0a3de257120642c6ef7--pune-book-fest.netlify.app/'  // Replace with your actual Netlify URL
+    ];
+    
+    // Check if the origin is in our allowed list or if it's undefined (for server-to-server requests)
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
+// Configure Socket.io with CORS
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      
+      // List of allowed origins for Socket.io
+      const allowedOrigins = [
+        'http://localhost:5173',
+        'http://localhost:3000',
+        'https://your-netlify-app.netlify.app'  // Replace with your actual Netlify URL
+      ];
+      
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ["GET", "POST"]
   }
 });
 
 // Middleware
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -42,6 +85,15 @@ app.get('/', (req, res) => {
       schedule: '/api/schedule',
       links: '/api/links'
     }
+  });
+});
+
+// Add health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString(),
+    service: 'Pune Book Fest 2025 API'
   });
 });
 
