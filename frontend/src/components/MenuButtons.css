@@ -1,0 +1,82 @@
+.menu-buttons-container {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.menu-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #100223d0;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.menu-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.menu-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 10px;
+  border: none;
+  border-radius: 15px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  font-family: 'Poppins', sans-serif;
+}
+
+.menu-button:hover {
+  background: linear-gradient(135deg, #8976a5 0%, #100223d0 100%);
+  box-shadow: 0 4px 20px rgba(137, 118, 165, 0.3);
+}
+
+.menu-button:hover .menu-label {
+  color: white;
+}
+
+.menu-icon {
+  font-size: 28px;
+  filter: grayscale(0);
+}
+
+.menu-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .menu-buttons-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .menu-button {
+    padding: 12px 8px;
+  }
+  
+  .menu-icon {
+    font-size: 24px;
+  }
+  
+  .menu-label {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .menu-buttons-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
