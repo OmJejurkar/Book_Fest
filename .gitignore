@@ -51,3 +51,6 @@ Thumbs.db
 # Production
 *.tgz
 .yarn/
+
+# Documentation files
+*.md
