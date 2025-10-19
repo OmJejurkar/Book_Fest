@@ -19,10 +19,8 @@ const App = () => {
     const newSocket = io(SOCKET_URL);
     setSocket(newSocket);
 
-    // Add welcome message
-    addBotMessage(
-      "Hello! Welcome to Pune Book Fest 2025 📚\n\nI'm here to help you explore the festival. Please select from the menu below or ask me anything!"
-    );
+    // Removed the welcome message here - it will be handled by the backend
+    // when the user sends their first message
 
     return () => newSocket.close();
   }, []);
@@ -97,7 +95,7 @@ const App = () => {
       } else if (action.type === 'show_schedule') {
         addUserMessage('Show me the complete schedule');
         const events = await getAllEvents();
-        
+      
         setTimeout(() => {
           setIsTyping(false);
           const scheduleText = formatFullSchedule(events);
@@ -106,12 +104,12 @@ const App = () => {
       } else if (action.type === 'show_day_schedule') {
         addUserMessage('Show me day-wise schedule');
         const days = await getEventDays();
-        
+      
         setTimeout(() => {
           setIsTyping(false);
           const daysText = `Please select a day to view the schedule:\n\n${days.map(d => `📅 Day ${d.day} - ${d.date} (${d.eventCount} events)`).join('\n')}`;
           addBotMessage(daysText);
-          
+        
           // Show day selection buttons
           showDayButtons(days);
         }, 800);
@@ -121,20 +119,20 @@ const App = () => {
           setIsTyping(false);
           const moreDetails = `📚 Pune Book Fest 2025 - Event Details
 
-📅 Dates: January 10-12, 2025
-📍 Venue: Symbiosis International University, Pune
+📅 Dates: December 14-21, 2024
+📍 Venue: Fergusson College Ground, Pune
 
 🎫 Ticket Information:
 • General Entry: Free
-• Workshop Registration: ₹500 per session
-• VIP Pass: ₹2000 (All 3 days access + Meet & Greet)
+• Workshop Registration: ₹300 per session
+• VIP Pass: ₹1500 (All 8 days access + Meet & Greet)
 
 📞 Contact:
-• Email: info@punebookfest2025.com
+• Email: info@punebookfest2024.com
 • Phone: +91 98765 43210
 • Helpline: 1800-XXX-XXXX
 
-⏰ Timings: 9:00 AM - 8:00 PM (All Days)
+⏰ Timings: 10:00 AM - 9:00 PM (All Days)
 
 🅿️ Parking: Available on campus
 🍽️ Food: Multiple food stalls available`;
@@ -143,7 +141,18 @@ const App = () => {
       }
     } catch (error) {
       setIsTyping(false);
-      addBotMessage("Sorry, I couldn't fetch that information. Please try again.");
+      console.error('API Error:', error);
+      // Provide more specific error messages
+      if (error.response) {
+        // Server responded with error status
+        addBotMessage(`Sorry, I received an error from the server: ${error.response.status}. Please try again.`);
+      } else if (error.request) {
+        // Request was made but no response received
+        addBotMessage("Sorry, I couldn't connect to the server. Please check your internet connection and try again.");
+      } else {
+        // Something else happened
+        addBotMessage("Sorry, I couldn't fetch that information. Please try again.");
+      }
     }
   };
 
@@ -211,7 +220,18 @@ const App = () => {
       }, 800);
     } catch (error) {
       setIsTyping(false);
-      addBotMessage(`Sorry, couldn't fetch schedule for Day ${day}.`);
+      console.error('API Error:', error);
+      // Provide more specific error messages
+      if (error.response) {
+        // Server responded with error status
+        addBotMessage(`Sorry, I received an error from the server: ${error.response.status}. Please try again.`);
+      } else if (error.request) {
+        // Request was made but no response received
+        addBotMessage("Sorry, I couldn't connect to the server. Please check your internet connection and try again.");
+      } else {
+        // Something else happened
+        addBotMessage(`Sorry, couldn't fetch schedule for Day ${day}. Please try again.`);
+      }
     }
   };
 

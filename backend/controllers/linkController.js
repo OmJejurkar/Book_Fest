@@ -1,10 +1,9 @@
-const Link = require('../models/Link');
+const linksData = require('../data/linksData');
 
 // Get all links
-exports.getAllLinks = async (req, res) => {
+exports.getAllLinks = (req, res) => {
   try {
-    const links = await Link.find();
-    res.json(links);
+    res.json(linksData);
   } catch (error) {
     console.error('Error fetching links:', error);
     res.status(500).json({ error: 'Failed to fetch links' });
@@ -12,10 +11,10 @@ exports.getAllLinks = async (req, res) => {
 };
 
 // Get link by name
-exports.getLinkByName = async (req, res) => {
+exports.getLinkByName = (req, res) => {
   try {
     const { name } = req.params;
-    const link = await Link.findOne({ name: name.toLowerCase() });
+    const link = linksData.find(link => link.name === name.toLowerCase());
     
     if (!link) {
       return res.status(404).json({ message: 'Link not found' });

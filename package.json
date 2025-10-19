@@ -10,7 +10,8 @@
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "start:backend": "npm start --prefix backend",
     "start:frontend": "npm run preview --prefix frontend",
-    "build:frontend": "npm run build --prefix frontend"
+    "build:frontend": "npm run build --prefix frontend",
+    "build:backend": "npm install --prefix backend"
   },
   "keywords": [
     "chatbot",

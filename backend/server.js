@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -22,7 +21,8 @@ const corsOptions = {
     const allowedOrigins = [
       'http://localhost:5173',
       'http://localhost:3000',
-      'https://68f2c0a3de257120642c6ef7--pune-book-fest.netlify.app/'  // Replace with your actual Netlify URL
+      'https://68f2c0a3de257120642c6ef7--pune-book-fest.netlify.app',
+      'https://pune-book-fest.netlify.app'
     ];
     
     // Check if the origin is in our allowed list or if it's undefined (for server-to-server requests)
@@ -49,7 +49,8 @@ const io = new Server(server, {
       const allowedOrigins = [
         'http://localhost:5173',
         'http://localhost:3000',
-        'https://your-netlify-app.netlify.app'  // Replace with your actual Netlify URL
+        'https://68f2c0a3de257120642c6ef7--pune-book-fest.netlify.app',
+        'https://pune-book-fest.netlify.app'
       ];
       
       if (allowedOrigins.includes(origin)) {
@@ -65,11 +66,6 @@ const io = new Server(server, {
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('✅ MongoDB Connected Successfully'))
-  .catch(err => console.error('❌ MongoDB Connection Error:', err));
 
 // Routes
 app.use('/api/messages', chatbotRoutes);
@@ -101,7 +97,7 @@ app.get('/health', (req, res) => {
 io.on('connection', (socket) => {
   console.log('👤 User connected:', socket.id);
 
-  socket.on('send_message', async (data) => {
+  socket.on('send_message', (data) => {
     // Broadcast message to all connected clients
     io.emit('receive_message', data);
   });

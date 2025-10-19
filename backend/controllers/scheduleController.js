@@ -1,9 +1,12 @@
-const Event = require('../models/Event');
+const eventsData = require('../data/eventsData');
 
 // Get all events
-exports.getAllEvents = async (req, res) => {
+exports.getAllEvents = (req, res) => {
   try {
-    const events = await Event.find().sort({ day: 1, time: 1 });
+    const events = [...eventsData].sort((a, b) => {
+      if (a.day !== b.day) return a.day - b.day;
+      return a.time.localeCompare(b.time);
+    });
     res.json(events);
   } catch (error) {
     console.error('Error fetching events:', error);
@@ -12,10 +15,11 @@ exports.getAllEvents = async (req, res) => {
 };
 
 // Get events by day
-exports.getEventsByDay = async (req, res) => {
+exports.getEventsByDay = (req, res) => {
   try {
     const { day } = req.params;
-    const events = await Event.find({ day: parseInt(day) }).sort({ time: 1 });
+    const events = eventsData.filter(event => event.day === parseInt(day))
+      .sort((a, b) => a.time.localeCompare(b.time));
     
     if (events.length === 0) {
       return res.status(404).json({ message: 'No events found for this day' });
@@ -29,19 +33,17 @@ exports.getEventsByDay = async (req, res) => {
 };
 
 // Get event days summary
-exports.getEventDays = async (req, res) => {
+exports.getEventDays = (req, res) => {
   try {
-    const days = await Event.distinct('day');
-    const daysSummary = await Promise.all(
-      days.map(async (day) => {
-        const dayEvents = await Event.find({ day }).sort({ time: 1 });
-        return {
-          day,
-          date: dayEvents[0]?.date || '',
-          eventCount: dayEvents.length
-        };
-      })
-    );
+    const days = [...new Set(eventsData.map(event => event.day))];
+    const daysSummary = days.map(day => {
+      const dayEvents = eventsData.filter(event => event.day === day);
+      return {
+        day,
+        date: dayEvents[0]?.date || '',
+        eventCount: dayEvents.length
+      };
+    });
     res.json(daysSummary.sort((a, b) => a.day - b.day));
   } catch (error) {
     console.error('Error fetching event days:', error);

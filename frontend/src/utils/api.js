@@ -12,7 +12,13 @@ export const sendMessage = async (text, sessionId) => {
     return response.data;
   } catch (error) {
     console.error('Error sending message:', error);
-    throw error;
+    if (error.response) {
+      throw new Error(`Server error: ${error.response.status} - ${error.response.statusText}`);
+    } else if (error.request) {
+      throw new Error('Network error: Unable to reach the server');
+    } else {
+      throw new Error('Request error: ' + error.message);
+    }
   }
 };
 
@@ -22,7 +28,13 @@ export const getChatHistory = async (sessionId) => {
     return response.data;
   } catch (error) {
     console.error('Error fetching chat history:', error);
-    throw error;
+    if (error.response) {
+      throw new Error(`Server error: ${error.response.status} - ${error.response.statusText}`);
+    } else if (error.request) {
+      throw new Error('Network error: Unable to reach the server');
+    } else {
+      throw new Error('Request error: ' + error.message);
+    }
   }
 };
 
@@ -33,7 +45,13 @@ export const getAllEvents = async () => {
     return response.data;
   } catch (error) {
     console.error('Error fetching events:', error);
-    throw error;
+    if (error.response) {
+      throw new Error(`Server error: ${error.response.status} - ${error.response.statusText}`);
+    } else if (error.request) {
+      throw new Error('Network error: Unable to reach the server');
+    } else {
+      throw new Error('Request error: ' + error.message);
+    }
   }
 };
 
@@ -43,7 +61,13 @@ export const getEventsByDay = async (day) => {
     return response.data;
   } catch (error) {
     console.error('Error fetching events by day:', error);
-    throw error;
+    if (error.response) {
+      throw new Error(`Server error: ${error.response.status} - ${error.response.statusText}`);
+    } else if (error.request) {
+      throw new Error('Network error: Unable to reach the server');
+    } else {
+      throw new Error('Request error: ' + error.message);
+    }
   }
 };
 
@@ -53,7 +77,13 @@ export const getEventDays = async () => {
     return response.data;
   } catch (error) {
     console.error('Error fetching event days:', error);
-    throw error;
+    if (error.response) {
+      throw new Error(`Server error: ${error.response.status} - ${error.response.statusText}`);
+    } else if (error.request) {
+      throw new Error('Network error: Unable to reach the server');
+    } else {
+      throw new Error('Request error: ' + error.message);
+    }
   }
 };
 
@@ -64,7 +94,13 @@ export const getAllLinks = async () => {
     return response.data;
   } catch (error) {
     console.error('Error fetching links:', error);
-    throw error;
+    if (error.response) {
+      throw new Error(`Server error: ${error.response.status} - ${error.response.statusText}`);
+    } else if (error.request) {
+      throw new Error('Network error: Unable to reach the server');
+    } else {
+      throw new Error('Request error: ' + error.message);
+    }
   }
 };
 
@@ -74,6 +110,12 @@ export const getLinkByName = async (name) => {
     return response.data;
   } catch (error) {
     console.error('Error fetching link:', error);
-    throw error;
+    if (error.response) {
+      throw new Error(`Server error: ${error.response.status} - ${error.response.statusText}`);
+    } else if (error.request) {
+      throw new Error('Network error: Unable to reach the server');
+    } else {
+      throw new Error('Request error: ' + error.message);
+    }
   }
 };
