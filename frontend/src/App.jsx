@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { io } from 'socket.io-client';
 import ChatWindow from './components/ChatWindow';
 import MessageInput from './components/MessageInput';
 import MenuButtons from './components/MenuButtons';
@@ -11,6 +10,20 @@ const App = () => {
   const [messages, setMessages] = useState([]);
   const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
   const [isTyping, setIsTyping] = useState(false);
+
+  // Add welcome message on component mount
+  useEffect(() => {
+    const welcomeMessage = {
+      text: `📚✨ "A reader lives a thousand lives before he dies." – George R. R. Martin ✨📚
+
+👋 Welcome to the Pune Book Festival!
+Immerse yourself in the world of stories, ideas, and imagination. I'm your festival assistant — here to help you explore schedules, author sessions, venues, and live updates.`,
+      sender: 'bot',
+      timestamp: new Date().toISOString()
+    };
+    
+    setMessages([welcomeMessage]);
+  }, []);
 
   const addBotMessage = (text) => {
     const botMessage = {
