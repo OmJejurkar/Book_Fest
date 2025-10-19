@@ -17,7 +17,10 @@ const App = () => {
       text: `📚✨ "A reader lives a thousand lives before he dies." – George R. R. Martin ✨📚
 
 👋 Welcome to the Pune Book Festival!
-Immerse yourself in the world of stories, ideas, and imagination. I'm your festival assistant — here to help you explore schedules, author sessions, venues, and live updates.`,
+Immerse yourself in the world of stories, ideas, and imagination. I'm your festival assistant — here to help you explore schedules, author sessions, venues, and live updates.
+
+📅 Event Dates: December 13-21, 2025
+📍 Location: Fergusson College, Pune (Fergusson College Rd, Shivajinagar, Pune, Maharashtra 411004)`,
       sender: 'bot',
       timestamp: new Date().toISOString()
     };
@@ -110,13 +113,14 @@ Immerse yourself in the world of stories, ideas, and imagination. I'm your festi
           setIsTyping(false);
           const moreDetails = `📚 Pune Book Fest 2025 - Event Details
 
-📅 Dates: December 14-21, 2025
-📍 Venue: Symbiosis International University, Gramajit Vimannagar Road, Pune
+📅 Dates: December 13-21, 2025
+📍 Venue: Fergusson College, Pune
+Fergusson College Rd, Shivajinagar, Pune, Maharashtra 411004
 
 🎫 Ticket Information:
 • General Entry: Free
 • Workshop Registration: ₹300 per session
-• VIP Pass: ₹1500 (All 8 days access + Meet & Greet)
+• VIP Pass: ₹1500 (All 9 days access + Meet & Greet)
 
 📞 Contact:
 • Email: info@punebookfest2025.com
@@ -183,7 +187,7 @@ Immerse yourself in the world of stories, ideas, and imagination. I'm your festi
       
       if (dayMatch) {
         const dayNumber = parseInt(dayMatch[1]);
-        if (dayNumber >= 1 && dayNumber <= 7) {
+        if (dayNumber >= 1 && dayNumber <= 9) {
           fetchDaySchedule(dayNumber);
         }
       }

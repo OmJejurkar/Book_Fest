@@ -61,16 +61,19 @@ const MenuButtons = ({ onMenuClick }) => {
       let url = '';
       switch(action.name) {
         case 'location':
-          url = 'https://maps.google.com/?q=Symbiosis+International+University+Pune';
+          url = 'https://maps.google.com/?q=Fergusson+College+Rd,+Shivajinagar,+Pune,+Maharashtra+411004';
           break;
         case 'youtube':
-          url = 'https://www.youtube.com/@punebookfest2025';
+          url = 'https://youtube.com/@punebookfestival-2k24?si=jyc_JxtKkG4_SkHb';
           break;
         case 'instagram':
-          url = 'https://www.instagram.com/punebookfest2025';
+          url = 'https://www.instagram.com/punebookfestival?igsh=MWRxeG8yZzlmOXE3eQ==';
           break;
         case 'facebook':
-          url = 'https://www.facebook.com/punebookfest2025';
+          url = 'https://www.facebook.com/share/17DVjpf5g7/';
+          break;
+        case 'website':
+          url = 'https://www.punebookfest2025.com';
           break;
         default:
           url = '#';

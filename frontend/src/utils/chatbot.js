@@ -85,14 +85,14 @@ export const generateBotResponse = (userInput) => {
 
     if (locationKeywords.some(keyword => userInput.includes(keyword))) {
       return {
-        text: "📍 Pune Book Fest 2025 is being held at:\n\nSymbiosis International University, Gramajit Vimannagar Road, Pune\n\nClick 'Google Location' button for directions!",
+        text: "📍 Pune Book Fest 2025 is being held at:\n\nFergusson College, Pune\nFergusson College Rd, Shivajinagar, Pune, Maharashtra 411004\n\nClick 'Google Location' button for directions!",
         type: 'location'
       };
     }
 
     if (contactKeywords.some(keyword => userInput.includes(keyword))) {
       return {
-        text: "📚 Pune Book Fest 2025 - Event Details\n\n📅 Dates: December 14-21, 2025\n\n📍 Venue: Symbiosis International University, Gramajit Vimannagar Road, Pune\n\n🎫 Ticket Information:\n\n• General Entry: Free\n• Workshop Registration: ₹300 per session\n• VIP Pass: ₹1500 (All 8 days access + Meet & Greet)\n\n📞 Contact:\n\n• Email: info@punebookfest2025.com\n• Phone: +91 98765 43210\n• Helpline: 1800-XXX-XXXX\n\n⏰ Timings: 10:00 AM - 9:00 PM (All Days)\n\n🅿️ Parking: Available on campus\n\n🍽️ Food: Multiple food stalls available",
+        text: "📚 Pune Book Fest 2025 - Event Details\n\n📅 Dates: December 13-21, 2025\n\n📍 Venue: Fergusson College, Pune\nFergusson College Rd, Shivajinagar, Pune, Maharashtra 411004\n\n🎫 Ticket Information:\n\n• General Entry: Free\n• Workshop Registration: ₹300 per session\n• VIP Pass: ₹1500 (All 9 days access + Meet & Greet)\n\n📞 Contact:\n\n• Email: info@punebookfest2025.com\n• Phone: +91 98765 43210\n• Helpline: 1800-XXX-XXXX\n\n⏰ Timings: 10:00 AM - 9:00 PM (All Days)\n\n🅿️ Parking: Available on campus\n\n🍽️ Food: Multiple food stalls available",
         type: 'contact'
       };
     }

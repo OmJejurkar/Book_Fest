@@ -1,7 +1,9 @@
 .message-input-container {
   padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
   background: rgba(255, 255, 255, 0.5);
   border-radius: 0 0 20px 20px;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 

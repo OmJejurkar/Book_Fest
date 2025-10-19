@@ -3,7 +3,7 @@ const linksData = [
   {
     id: 1,
     name: 'youtube',
-    url: 'https://youtube.com/@punebookfestival-2k24?si=OfSDaUwCmrHk0laY',
+    url: 'https://youtube.com/@punebookfestival-2k24?si=jyc_JxtKkG4_SkHb',
     type: 'social',
     description: 'Watch event highlights and author interviews'
   },
@@ -17,7 +17,7 @@ const linksData = [
   {
     id: 3,
     name: 'instagram',
-    url: 'https://www.instagram.com/punebookfestival?igsh=N3Z5d3lpZHZwanJw',
+    url: 'https://www.instagram.com/punebookfestival?igsh=MWRxeG8yZzlmOXE3eQ==',
     type: 'social',
     description: 'Check out our Instagram for behind-the-scenes content'
   },
@@ -31,9 +31,9 @@ const linksData = [
   {
     id: 5,
     name: 'location',
-    url: 'https://maps.google.com/?q=Symbiosis+International+University+Pune',
+    url: 'https://maps.google.com/?q=Fergusson+College+Rd,+Shivajinagar,+Pune,+Maharashtra+411004',
     type: 'location',
-    description: 'Symbiosis International University, Gramajit Vimannagar Road, Pune'
+    description: 'Fergusson College, Pune (Fergusson College Rd, Shivajinagar, Pune, Maharashtra 411004)'
   }
 ];
 
