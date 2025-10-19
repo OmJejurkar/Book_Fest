@@ -22,7 +22,10 @@ const corsOptions = {
       'http://localhost:5173',
       'http://localhost:3000',
       'https://68f2c0a3de257120642c6ef7--pune-book-fest.netlify.app',
-      'https://pune-book-fest.netlify.app'
+      'https://pune-book-fest.netlify.app',
+      'https://book-fest.onrender.com',
+      'https://68f50773df9e6e00087ae6b2--pune-book-fest.netlify.app/'
+
     ];
     
     // Check if the origin is in our allowed list or if it's undefined (for server-to-server requests)
@@ -50,7 +53,8 @@ const io = new Server(server, {
         'http://localhost:5173',
         'http://localhost:3000',
         'https://68f2c0a3de257120642c6ef7--pune-book-fest.netlify.app',
-        'https://pune-book-fest.netlify.app'
+        'https://pune-book-fest.netlify.app',
+        'https://book-fest.onrender.com'
       ];
       
       if (allowedOrigins.includes(origin)) {

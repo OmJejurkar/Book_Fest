@@ -1,9 +1,9 @@
-const puneBookFestSchedule2024 = [
+const puneBookFestSchedule2025 = [
   // --- INAUGURATION CEREMONY ---
   {
     id: 0,
     day: 0,
-    date: 'December 14, 2024',
+    date: 'December 14, 2025',
     time: '5:00 PM',
     title: 'Grand Inauguration Ceremony (भव्य उदघाटन समारंभ)',
     speaker: 'Chief Guest: Hon. Devendra Fadnavis (Ex-CM, Maharashtra)',
@@ -11,12 +11,12 @@ const puneBookFestSchedule2024 = [
     description: 'Formal opening of the Pune Book Festival. Guests of Honor include Hon. Muralidhar Mohol and Hon. Chandrakantada Patil.'
   },
 
-  // --- SATURDAY, DECEMBER 14, 2024 ---
+  // --- SATURDAY, DECEMBER 14, 2025 ---
   // Children's Corner
   {
     id: 1,
     day: 1,
-    date: 'December 14, 2024',
+    date: 'December 14, 2025',
     time: '10:00 AM - 11:00 AM',
     title: 'Young Picassos (Drawing Competition)',
     speaker: 'NCCL',
@@ -26,7 +26,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 2,
     day: 1,
-    date: 'December 14, 2024',
+    date: 'December 14, 2025',
     time: '11:15 AM - 12:15 AM',
     title: "Let's Write a Story (आऔ लिखे कहानी)",
     speaker: 'NCCL',
@@ -37,7 +37,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 3,
     day: 1,
-    date: 'December 14, 2024',
+    date: 'December 14, 2025',
     time: '3:00 PM - 3:45 PM',
     title: 'Panel Discussion: Vow-King (Sankalprajwadi) - Rajmata Jijau and Chhatrapati Shivaji Maharaj',
     speaker: 'Prakash Pawar, Gopal Nandedkar, Madhav Gokhale',
@@ -47,7 +47,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 4,
     day: 1,
-    date: 'December 14, 2024',
+    date: 'December 14, 2025',
     time: '4:00 PM - 4:45 PM',
     title: 'Audio-Visual Program: "Jata Dahe" (जाता डहे)',
     speaker: 'Suhas Khilarekar',
@@ -58,7 +58,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 5,
     day: 1,
-    date: 'December 14, 2024',
+    date: 'December 14, 2025',
     time: '7:00 PM - 7:15 PM',
     title: 'Saraswati Vandana (सरस्वती वंदना)',
     speaker: 'Ms. Anuya Joshi',
@@ -68,7 +68,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 6,
     day: 1,
-    date: 'December 14, 2024',
+    date: 'December 14, 2025',
     time: '7:15 PM - 9:00 PM',
     title: 'Memories of Moonlight: A Poetic Experience (चांदणे स्मरणाचे : एक काव्यानुभूती)',
     speaker: 'Pallavi Godbole, Santanu Panse, Tabala Sath, Akshay Shevde, Harnam Singh - Sardeshpande',
@@ -79,7 +79,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 7,
     day: 1,
-    date: 'December 14, 2024',
+    date: 'December 14, 2025',
     time: '11:00 AM - 12:35 PM',
     title: 'Film: Dharan (Dam Wall) - Marathi',
     speaker: 'Director: Vedanti Dani',
@@ -88,12 +88,12 @@ const puneBookFestSchedule2024 = [
   },
   // ... (Other films for Dec 14 are omitted for brevity, but could be added here following the film entries below) ...
 
-  // --- SUNDAY, DECEMBER 15, 2024 ---
+  // --- SUNDAY, DECEMBER 15, 2025 ---
   // Children's Corner
   {
     id: 8,
     day: 2,
-    date: 'December 15, 2024',
+    date: 'December 15, 2025',
     time: '10:00 AM - 10:45 AM',
     title: 'Open Mic Express',
     speaker: 'NCCL',
@@ -103,7 +103,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 9,
     day: 2,
-    date: 'December 15, 2024',
+    date: 'December 15, 2025',
     time: '12:00 PM - 12:45 PM',
     title: 'The Power of Words (शब्दांची शक्ति) Slogan Writing Competition',
     speaker: 'NCCL',
@@ -114,7 +114,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 10,
     day: 2,
-    date: 'December 15, 2024',
+    date: 'December 15, 2025',
     time: '2:00 PM - 2:45 PM',
     title: 'Panel Discussion: Creation of fantasy & fictional worlds in Children\'s Books',
     speaker: 'Ms Shraddha Sahi, Ms. Ashwini R Sane',
@@ -124,7 +124,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 11,
     day: 2,
-    date: 'December 15, 2024',
+    date: 'December 15, 2025',
     time: '6:00 PM - 6:45 PM',
     title: 'Book Launch: 50 Golden Rules of Life',
     speaker: 'Santosh Joshi',
@@ -135,7 +135,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 12,
     day: 2,
-    date: 'December 15, 2024',
+    date: 'December 15, 2025',
     time: '7:00 PM - 9:00 PM',
     title: 'Dig V and Global Gharana',
     speaker: 'Ujjwal Patel',
@@ -146,7 +146,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 13,
     day: 2,
-    date: 'December 15, 2024',
+    date: 'December 15, 2025',
     time: '12:45 PM - 1:20 PM',
     title: 'Film: Gold Medal - Hindi',
     speaker: 'Director: Ujjwal Patel',
@@ -155,14 +155,14 @@ const puneBookFestSchedule2024 = [
   },
   // ... (Remaining Dec 15 sessions are omitted for brevity) ...
 
-  // --- MONDAY, DECEMBER 16, 2024 ---
+  // --- MONDAY, DECEMBER 16, 2025 ---
   // Children's Corner
   {
     id: 14,
     day: 3,
-    date: 'December 16, 2024',
+    date: 'December 16, 2025',
     time: '10:00 AM - 10:45 AM',
-    title: 'Treasure of Stories (कहानियों का ख़ज़ाना)',
+    title: 'Treasure of Stories (कहानियों का ख़ज़ाना)',
     speaker: 'NCCL',
     location: "Children's Corner (Class 1 to 5)",
     description: 'A session dedicated to engaging storytelling.'
@@ -171,7 +171,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 15,
     day: 3,
-    date: 'December 16, 2024',
+    date: 'December 16, 2025',
     time: '2:00 PM - 2:45 PM',
     title: 'Book Launch: Shakti: Women, Gender and Society in India',
     speaker: 'Nayana Sahasrabuddhe',
@@ -181,7 +181,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 16,
     day: 3,
-    date: 'December 16, 2024',
+    date: 'December 16, 2025',
     time: '5:00 PM - 5:45 PM',
     title: 'Nurturing Yourself and Others',
     speaker: 'Dr. Pratibha Deshpande, Dr. Shruti Supriya, Supriya Pujar',
@@ -192,7 +192,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 17,
     day: 3,
-    date: 'December 16, 2024',
+    date: 'December 16, 2025',
     time: '8:00 PM - 9:00 PM',
     title: 'Abhang Repost',
     speaker: 'Abhang Repost (Performer)',
@@ -203,7 +203,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 18,
     day: 3,
-    date: 'December 16, 2024',
+    date: 'December 16, 2025',
     time: '11:00 AM - 12:25 PM',
     title: 'Film: Selfie with Rostam - Persian',
     speaker: "Director: HOSSEIN GHANA'at",
@@ -212,12 +212,12 @@ const puneBookFestSchedule2024 = [
   },
   // ... (Remaining Dec 16 sessions are omitted for brevity) ...
 
-  // --- TUESDAY, DECEMBER 17, 2024 ---
+  // --- TUESDAY, DECEMBER 17, 2025 ---
   // Children's Corner
   {
     id: 19,
     day: 4,
-    date: 'December 17, 2024',
+    date: 'December 17, 2025',
     time: '10:00 AM - 10:45 AM',
     title: 'The Magic of Story: An attractive session with Puppets (कहानी का जादू)',
     speaker: 'Vidya Nesarikar',
@@ -228,7 +228,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 20,
     day: 4,
-    date: 'December 17, 2024',
+    date: 'December 17, 2025',
     time: '2:00 PM - 2:45 PM',
     title: 'Book Launch: "But What Does Science Say?"',
     speaker: 'Dr. Manan Vora',
@@ -239,9 +239,9 @@ const puneBookFestSchedule2024 = [
   {
     id: 21,
     day: 4,
-    date: 'December 17, 2024',
+    date: 'December 17, 2025',
     time: '6:00 PM - 8:00 PM',
-    title: 'Ghazali Marathi Shayari (गज़ली मराठी शायरी)',
+    title: 'Ghazali Marathi Shayari (गज़ली मराठी शायरी)',
     speaker: '',
     location: 'Cultural Stage',
     description: 'An evening of Marathi Ghazal poetry.'
@@ -250,7 +250,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 22,
     day: 4,
-    date: 'December 17, 2024',
+    date: 'December 17, 2025',
     time: '1:35 PM - 2:50 PM',
     title: 'Film: Teca & Tuti: A Night at the Library - Portuguese',
     speaker: 'Directors: Eduardo Perdido, Tiago M. A. Lima, Diego M. Doimo',
@@ -259,12 +259,12 @@ const puneBookFestSchedule2024 = [
   },
   // ... (Remaining Dec 17 sessions are omitted for brevity) ...
 
-  // --- WEDNESDAY, DECEMBER 18, 2024 ---
+  // --- WEDNESDAY, DECEMBER 18, 2025 ---
   // Children's Corner
   {
     id: 23,
     day: 5,
-    date: 'December 18, 2024',
+    date: 'December 18, 2025',
     time: '10:00 AM - 10:45 AM',
     title: 'Theatre of Tales',
     speaker: 'Nivedita',
@@ -275,7 +275,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 24,
     day: 5,
-    date: 'December 18, 2024',
+    date: 'December 18, 2025',
     time: '3:00 PM - 3:45 PM',
     title: 'Making Informed Decisions: A Key to Success',
     speaker: 'Kedar Kamat & Chetaan Joshii',
@@ -285,7 +285,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 25,
     day: 5,
-    date: 'December 18, 2024',
+    date: 'December 18, 2025',
     time: '6:00 PM - 6:45 PM',
     title: 'Book Launches by Mehta Publishers',
     speaker: 'Mehta Publishers',
@@ -296,7 +296,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 26,
     day: 5,
-    date: 'December 18, 2024',
+    date: 'December 18, 2025',
     time: '7:30 PM - 9:00 PM',
     title: 'Space Folk Odyssey',
     speaker: 'Performer(s) TBD',
@@ -305,12 +305,12 @@ const puneBookFestSchedule2024 = [
   },
   // ... (Remaining Dec 18 sessions are omitted for brevity) ...
 
-  // --- FRIDAY, DECEMBER 20, 2024 (PUNE LIT FEST - DAY 1) ---
+  // --- FRIDAY, DECEMBER 20, 2025 (PUNE LIT FEST - DAY 1) ---
   // Children's Corner
   {
     id: 27,
     day: 6,
-    date: 'December 20, 2024',
+    date: 'December 20, 2025',
     time: '10:00 AM - 10:45 AM',
     title: 'Tunes & Tales: Musical Storytelling',
     speaker: 'Nivedita',
@@ -321,7 +321,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 28,
     day: 6,
-    date: 'December 20, 2024',
+    date: 'December 20, 2025',
     time: '2:00 PM - 2:45 PM',
     title: "'Mahabharat To Bharat @2025' (Marathi & English)",
     speaker: 'Mr. Madhav Joshi',
@@ -332,7 +332,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 29,
     day: 6,
-    date: 'December 20, 2024',
+    date: 'December 20, 2025',
     time: '8:00 PM - 9:00 PM',
     title: 'Sadho the Band',
     speaker: 'Sadho the Band',
@@ -340,12 +340,12 @@ const puneBookFestSchedule2024 = [
     description: 'A performance by the band Sadho.'
   },
 
-  // --- SATURDAY, DECEMBER 21, 2024 (PUNE LIT FEST - DAY 2) ---
+  // --- SATURDAY, DECEMBER 21, 2025 (PUNE LIT FEST - DAY 2) ---
   // Children's Corner
   {
     id: 30,
     day: 7,
-    date: 'December 21, 2024',
+    date: 'December 21, 2025',
     time: '10:00 AM - 10:45 AM',
     title: 'Fun with Vedic Maths',
     speaker: 'Vivek Kumar',
@@ -356,7 +356,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 31,
     day: 7,
-    date: 'December 21, 2024',
+    date: 'December 21, 2025',
     time: '2:30 PM - 3:30 PM',
     title: 'Chat with a Reading Consultant (रीडिंग कन्सल्टन्टवरच्या गप्पा)',
     speaker: 'Shashikant Sawant, Shri Arvind Jagtap',
@@ -367,7 +367,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 32,
     day: 7,
-    date: 'December 21, 2024',
+    date: 'December 21, 2025',
     time: '8:00 PM - 9:00 PM',
     title: 'I am Marathi - Classical Marathi (मी मराठी - अभिजात मराठी)',
     speaker: 'Performer(s) TBD',
@@ -378,7 +378,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 33,
     day: 7,
-    date: 'December 21, 2024',
+    date: 'December 21, 2025',
     time: '11:00 AM - 11:30 AM',
     title: 'Discussions on Book Ayodhya to Ayutthaya – a socio-cultural perspective',
     speaker: 'Lt. Cdr. Neeraj Vashisth',
@@ -388,7 +388,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 34,
     day: 7,
-    date: 'December 21, 2024',
+    date: 'December 21, 2025',
     time: '12:40 PM - 1:50 PM',
     title: 'RSS @100',
     speaker: 'Sunil Ambekar, Dr. Narendra Pathak',
@@ -398,7 +398,7 @@ const puneBookFestSchedule2024 = [
   {
     id: 35,
     day: 7,
-    date: 'December 21, 2024',
+    date: 'December 21, 2025',
     time: '4:00 PM - 5:00 PM',
     title: 'Media and Literature (Media and Reading Culture Chat with the Editors)',
     speaker: 'Shriram Kale, Pralhad Kakani, Kiran Shevkar',
@@ -407,4 +407,4 @@ const puneBookFestSchedule2024 = [
   },
 ];
 
-module.exports = puneBookFestSchedule2024;
+module.exports = puneBookFestSchedule2025;
