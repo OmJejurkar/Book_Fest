@@ -3,21 +3,21 @@ const linksData = [
   {
     id: 1,
     name: 'youtube',
-    url: 'https://www.youtube.com/@punebookfest2025',
+    url: 'https://youtube.com/@punebookfestival-2k24?si=OfSDaUwCmrHk0laY',
     type: 'social',
     description: 'Watch event highlights and author interviews'
   },
   {
     id: 2,
     name: 'facebook',
-    url: 'https://www.facebook.com/punebookfest2025',
+    url: 'https://www.facebook.com/share/17DVjpf5g7/',
     type: 'social',
     description: 'Follow us on Facebook for daily updates'
   },
   {
     id: 3,
     name: 'instagram',
-    url: 'https://www.instagram.com/punebookfest2025',
+    url: 'https://www.instagram.com/punebookfestival?igsh=N3Z5d3lpZHZwanJw',
     type: 'social',
     description: 'Check out our Instagram for behind-the-scenes content'
   },
