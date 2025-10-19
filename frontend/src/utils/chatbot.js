@@ -1,75 +1,8 @@
-// In-memory storage for messages
-const messagesStorage = new Map();
-const eventsData = require('../data/eventsData');
-
-// Handle chatbot messages
-exports.handleMessage = (req, res) => {
-  try {
-    const { text, sessionId } = req.body;
-
-    // Validate input
-    if (!text || !sessionId) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: text and sessionId' 
-      });
-    }
-
-    // Initialize session storage if it doesn't exist
-    if (!messagesStorage.has(sessionId)) {
-      messagesStorage.set(sessionId, []);
-    }
-
-    const sessionMessages = messagesStorage.get(sessionId);
-
-    // Save user message
-    const userMessage = {
-      id: Date.now() + '-user',
-      text,
-      sender: 'user',
-      sessionId,
-      timestamp: new Date()
-    };
-    sessionMessages.push(userMessage);
-
-    // Generate bot response based on user input
-    let botResponse = generateBotResponse(text.toLowerCase(), sessionId);
-
-    // Save bot message
-    const botMessage = {
-      id: Date.now() + '-bot',
-      text: botResponse.text,
-      sender: 'bot',
-      sessionId,
-      timestamp: new Date()
-    };
-    sessionMessages.push(botMessage);
-
-    res.json({
-      message: botResponse
-    });
-  } catch (error) {
-    console.error('Error handling message:', error);
-    res.status(500).json({ 
-      error: 'Sorry, I couldn\'t fetch that information. Please try again.',
-      details: error.message 
-    });
-  }
-};
-
-// Get chat history
-exports.getChatHistory = (req, res) => {
-  try {
-    const { sessionId } = req.params;
-    const messages = messagesStorage.get(sessionId) || [];
-    res.json(messages);
-  } catch (error) {
-    console.error('Error fetching chat history:', error);
-    res.status(500).json({ error: 'Failed to fetch chat history' });
-  }
-};
+import eventsData from '../data/eventsData';
+import linksData from '../data/linksData';
 
 // Generate bot response logic
-function generateBotResponse(userInput, sessionId) {
+export const generateBotResponse = (userInput) => {
   // Default response in case nothing matches
   const defaultResponse = {
     text: "I'm here to help! You can ask me about:\n\n🗓️ Complete schedule\n📅 Day-wise events\n📍 Location details\nℹ️ Event information\n\nPlease select from the menu or ask a specific question!",
@@ -82,10 +15,6 @@ function generateBotResponse(userInput, sessionId) {
     const dayScheduleExact = ['show me day-wise schedule', 'day-wise schedule', 'day wise schedule'];
     const locationKeywords = ['location', 'where', 'address', 'venue'];
     const contactKeywords = ['contact', 'phone', 'email', 'reach', 'more details'];
-
-    // Check if this is the first message in the session to avoid duplicate welcome messages
-    const sessionMessages = messagesStorage.get(sessionId) || [];
-    const isFirstMessage = sessionMessages.length === 1; // Only the user's message has been added so far
 
     // Check for exact matches first
     if (fullScheduleExact.some(keyword => userInput === keyword || userInput.includes(keyword))) {
@@ -147,7 +76,7 @@ function generateBotResponse(userInput, sessionId) {
     }
 
     // Check for keyword matches
-    if (greetings.some(greeting => userInput.includes(greeting)) && isFirstMessage) {
+    if (greetings.some(greeting => userInput.includes(greeting))) {
       return {
         text: "Hello! Welcome to Pune Book Fest 2025 📚\n\nI'm here to help you explore the festival. Please select from the menu below or ask me anything!",
         type: 'greeting'
@@ -168,22 +97,6 @@ function generateBotResponse(userInput, sessionId) {
       };
     }
 
-    // For subsequent messages, provide a more concise default response
-    if (!isFirstMessage) {
-      return {
-        text: "I'm here to help! You can ask me about:\n\n🗓️ Complete schedule\n📅 Day-wise events\n📍 Location details\nℹ️ Event information\n\nPlease select from the menu or ask a specific question!",
-        type: 'default'
-      };
-    }
-
-    // Default greeting for first message if no specific keywords matched
-    if (isFirstMessage) {
-      return {
-        text: "Hello! Welcome to Pune Book Fest 2025 📚\n\nI'm here to help you explore the festival. Please select from the menu below or ask me anything!",
-        type: 'greeting'
-      };
-    }
-
     // Return default response if nothing else matches
     return defaultResponse;
   } catch (error) {
@@ -191,4 +104,80 @@ function generateBotResponse(userInput, sessionId) {
     // Return a safe default response in case of errors
     return defaultResponse;
   }
-}
+};
+
+// Get all events
+export const getAllEvents = () => {
+  try {
+    const events = [...eventsData].sort((a, b) => {
+      if (a.day !== b.day) return a.day - b.day;
+      return a.time.localeCompare(b.time);
+    });
+    return events;
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    throw new Error('Failed to fetch events');
+  }
+};
+
+// Get events by day
+export const getEventsByDay = (day) => {
+  try {
+    const events = eventsData.filter(event => event.day === parseInt(day))
+      .sort((a, b) => a.time.localeCompare(b.time));
+    
+    if (events.length === 0) {
+      throw new Error('No events found for this day');
+    }
+    
+    return events;
+  } catch (error) {
+    console.error('Error fetching events by day:', error);
+    throw new Error('Failed to fetch events');
+  }
+};
+
+// Get event days summary
+export const getEventDays = () => {
+  try {
+    const days = [...new Set(eventsData.map(event => event.day))];
+    const daysSummary = days.map(day => {
+      const dayEvents = eventsData.filter(event => event.day === day);
+      return {
+        day,
+        date: dayEvents[0]?.date || '',
+        eventCount: dayEvents.length
+      };
+    });
+    return daysSummary.sort((a, b) => a.day - b.day);
+  } catch (error) {
+    console.error('Error fetching event days:', error);
+    throw new Error('Failed to fetch event days');
+  }
+};
+
+// Get all links
+export const getAllLinks = () => {
+  try {
+    return linksData;
+  } catch (error) {
+    console.error('Error fetching links:', error);
+    throw new Error('Failed to fetch links');
+  }
+};
+
+// Get link by name
+export const getLinkByName = (name) => {
+  try {
+    const link = linksData.find(link => link.name === name.toLowerCase());
+    
+    if (!link) {
+      throw new Error('Link not found');
+    }
+    
+    return link;
+  } catch (error) {
+    console.error('Error fetching link:', error);
+    throw new Error('Failed to fetch link');
+  }
+};

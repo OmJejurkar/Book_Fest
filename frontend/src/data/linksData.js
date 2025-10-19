@@ -37,4 +37,4 @@ const linksData = [
   }
 ];
 
-module.exports = linksData;
+export default linksData;

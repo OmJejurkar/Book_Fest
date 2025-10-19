@@ -1,3 +1,4 @@
+// Static events data for Pune Book Fest 2025
 const puneBookFestSchedule2025 = [
   // --- INAUGURATION CEREMONY ---
   {
@@ -7,7 +8,7 @@ const puneBookFestSchedule2025 = [
     time: '5:00 PM',
     title: 'Grand Inauguration Ceremony (भव्य उदघाटन समारंभ)',
     speaker: 'Chief Guest: Hon. Devendra Fadnavis (Ex-CM, Maharashtra)',
-    location: 'Fergusson College Ground, Pune',
+    location: 'Symbiosis International University, Pune',
     description: 'Formal opening of the Pune Book Festival. Guests of Honor include Hon. Muralidhar Mohol and Hon. Chandrakantada Patil.'
   },
 
@@ -407,4 +408,4 @@ const puneBookFestSchedule2025 = [
   },
 ];
 
-module.exports = puneBookFestSchedule2025;
+export default puneBookFestSchedule2025;

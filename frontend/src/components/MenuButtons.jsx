@@ -1,116 +1,103 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { getAllLinks } from '../utils/api';
 import './MenuButtons.css';
 
 const MenuButtons = ({ onMenuClick }) => {
-  const [links, setLinks] = useState([]);
-
-  useEffect(() => {
-    fetchLinks();
-  }, []);
-
-  const fetchLinks = async () => {
-    try {
-      const data = await getAllLinks();
-      setLinks(data);
-    } catch (error) {
-      console.error('Error fetching links:', error);
-    }
-  };
-
-  const menuItems = [
+  const menuActions = [
     { 
-      id: 'schedule', 
-      label: 'Schedule', 
-      icon: '🗓️',
-      action: 'show_schedule'
+      id: 1, 
+      icon: '📅', 
+      label: 'Full Schedule', 
+      action: { type: 'show_schedule' },
+      color: 'purple'
     },
     { 
-      id: 'day-schedule', 
-      label: 'Day-wise Schedule', 
-      icon: '📅',
-      action: 'show_day_schedule'
+      id: 2, 
+      icon: '📆', 
+      label: 'Day-wise', 
+      action: { type: 'show_day_schedule' },
+      color: 'blue'
     },
     { 
-      id: 'youtube', 
+      id: 3, 
+      icon: '📍', 
+      label: 'Location', 
+      action: { type: 'link', name: 'location' },
+      color: 'green'
+    },
+    { 
+      id: 4, 
+      icon: 'ℹ️', 
+      label: 'More Info', 
+      action: { type: 'show_more' },
+      color: 'orange'
+    },
+    { 
+      id: 5, 
+      icon: '📺', 
       label: 'YouTube', 
-      icon: '🎥',
-      action: 'open_link',
-      linkName: 'youtube'
+      action: { type: 'link', name: 'youtube' },
+      color: 'red'
     },
     { 
-      id: 'facebook', 
-      label: 'Facebook', 
-      icon: '👍',
-      action: 'open_link',
-      linkName: 'facebook'
-    },
-    { 
-      id: 'instagram', 
+      id: 6, 
+      icon: '📸', 
       label: 'Instagram', 
-      icon: '📸',
-      action: 'open_link',
-      linkName: 'instagram'
+      action: { type: 'link', name: 'instagram' },
+      color: 'pink'
     },
     { 
-      id: 'website', 
-      label: 'Website', 
-      icon: '🌐',
-      action: 'open_link',
-      linkName: 'website'
-    },
-    { 
-      id: 'location', 
-      label: 'Google Location', 
-      icon: '📍',
-      action: 'open_link',
-      linkName: 'location'
-    },
-    { 
-      id: 'more', 
-      label: 'More Details', 
-      icon: 'ℹ️',
-      action: 'show_more'
+      id: 7, 
+      icon: '👥', 
+      label: 'Facebook', 
+      action: { type: 'link', name: 'facebook' },
+      color: 'blue'
     }
   ];
 
-  const handleClick = (item) => {
-    if (item.action === 'open_link') {
-      const link = links.find(l => l.name === item.linkName);
-      if (link) {
-        window.open(link.url, '_blank');
-        onMenuClick({
-          type: 'link',
-          name: item.label,
-          url: link.url
-        });
+  const handleMenuClick = (action) => {
+    // Handle link actions by opening in new tab
+    if (action.type === 'link') {
+      let url = '';
+      switch(action.name) {
+        case 'location':
+          url = 'https://maps.google.com/?q=Symbiosis+International+University+Pune';
+          break;
+        case 'youtube':
+          url = 'https://www.youtube.com/@punebookfest2025';
+          break;
+        case 'instagram':
+          url = 'https://www.instagram.com/punebookfest2025';
+          break;
+        case 'facebook':
+          url = 'https://www.facebook.com/punebookfest2025';
+          break;
+        default:
+          url = '#';
       }
-    } else {
-      onMenuClick({
-        type: item.action,
-        name: item.label
-      });
+      if (url !== '#') {
+        window.open(url, '_blank');
+      }
     }
+    
+    // Pass other actions to parent handler
+    onMenuClick(action);
   };
 
   return (
     <div className="menu-buttons-container">
-      <div className="menu-title">Quick Actions</div>
-      <div className="menu-buttons-grid">
-        {menuItems.map((item, index) => (
+      <div className="menu-buttons-list">
+        {menuActions.map((item) => (
           <motion.button
             key={item.id}
             className="menu-button"
-            onClick={() => handleClick(item)}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.05 }}
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => handleMenuClick(item.action)}
           >
-            <span className="menu-icon">{item.icon}</span>
-            <span className="menu-label">{item.label}</span>
+            <span className="button-icon">{item.icon}</span>
+            <span className="button-label">{item.label}</span>
+            <span className="button-arrow">▶</span>
           </motion.button>
         ))}
       </div>

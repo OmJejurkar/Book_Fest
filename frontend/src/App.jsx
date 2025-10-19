@@ -3,39 +3,14 @@ import { io } from 'socket.io-client';
 import ChatWindow from './components/ChatWindow';
 import MessageInput from './components/MessageInput';
 import MenuButtons from './components/MenuButtons';
-import { sendMessage, getAllEvents, getEventsByDay, getEventDays } from './utils/api';
+import { generateBotResponse, getAllEvents, getEventsByDay, getEventDays } from './utils/chatbot';
 import { motion } from 'framer-motion';
 import './App.css';
 
 const App = () => {
   const [messages, setMessages] = useState([]);
   const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
-  const [socket, setSocket] = useState(null);
   const [isTyping, setIsTyping] = useState(false);
-
-  useEffect(() => {
-    // Initialize socket connection
-    const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
-    const newSocket = io(SOCKET_URL);
-    setSocket(newSocket);
-
-    // Removed the welcome message here - it will be handled by the backend
-    // when the user sends their first message
-
-    return () => newSocket.close();
-  }, []);
-
-  useEffect(() => {
-    if (!socket) return;
-
-    socket.on('receive_message', (data) => {
-      console.log('Received message:', data);
-    });
-
-    return () => {
-      socket.off('receive_message');
-    };
-  }, [socket]);
 
   const addBotMessage = (text) => {
     const botMessage = {
@@ -63,22 +38,17 @@ const App = () => {
     setIsTyping(true);
 
     try {
-      // Send to backend
-      const response = await sendMessage(text, sessionId);
+      // Generate bot response directly in frontend
+      const response = generateBotResponse(text.toLowerCase());
       
       // Simulate typing delay
       setTimeout(() => {
         setIsTyping(false);
-        addBotMessage(response.message.text);
+        addBotMessage(response.text);
       }, 800);
-
-      // Emit via socket
-      if (socket) {
-        socket.emit('send_message', { text, sessionId, sender: 'user' });
-      }
     } catch (error) {
       setIsTyping(false);
-      addBotMessage("Sorry, I'm having trouble connecting. Please try again later.");
+      addBotMessage("Sorry, I'm having trouble processing your request. Please try again later.");
     }
   };
 
@@ -94,24 +64,32 @@ const App = () => {
         }, 500);
       } else if (action.type === 'show_schedule') {
         addUserMessage('Show me the complete schedule');
-        const events = await getAllEvents();
       
         setTimeout(() => {
           setIsTyping(false);
-          const scheduleText = formatFullSchedule(events);
-          addBotMessage(scheduleText);
+          try {
+            const events = getAllEvents();
+            const scheduleText = formatFullSchedule(events);
+            addBotMessage(scheduleText);
+          } catch (error) {
+            addBotMessage("Sorry, I couldn't fetch the schedule. Please try again.");
+          }
         }, 800);
       } else if (action.type === 'show_day_schedule') {
         addUserMessage('Show me day-wise schedule');
-        const days = await getEventDays();
       
         setTimeout(() => {
           setIsTyping(false);
-          const daysText = `Please select a day to view the schedule:\n\n${days.map(d => `📅 Day ${d.day} - ${d.date} (${d.eventCount} events)`).join('\n')}`;
-          addBotMessage(daysText);
-        
-          // Show day selection buttons
-          showDayButtons(days);
+          try {
+            const days = getEventDays();
+            const daysText = `Please select a day to view the schedule:\n\n${days.map(d => `📅 Day ${d.day} - ${d.date} (${d.eventCount} events)`).join('\n')}`;
+            addBotMessage(daysText);
+          
+            // Show day selection buttons
+            showDayButtons(days);
+          } catch (error) {
+            addBotMessage("Sorry, I couldn't fetch the day schedule. Please try again.");
+          }
         }, 800);
       } else if (action.type === 'show_more') {
         addUserMessage('Tell me more details');
@@ -119,8 +97,8 @@ const App = () => {
           setIsTyping(false);
           const moreDetails = `📚 Pune Book Fest 2025 - Event Details
 
-📅 Dates: December 14-21, 2024
-📍 Venue: Fergusson College Ground, Pune
+📅 Dates: December 14-21, 2025
+📍 Venue: Symbiosis International University, Gramajit Vimannagar Road, Pune
 
 🎫 Ticket Information:
 • General Entry: Free
@@ -128,7 +106,7 @@ const App = () => {
 • VIP Pass: ₹1500 (All 8 days access + Meet & Greet)
 
 📞 Contact:
-• Email: info@punebookfest2024.com
+• Email: info@punebookfest2025.com
 • Phone: +91 98765 43210
 • Helpline: 1800-XXX-XXXX
 
@@ -141,18 +119,8 @@ const App = () => {
       }
     } catch (error) {
       setIsTyping(false);
-      console.error('API Error:', error);
-      // Provide more specific error messages
-      if (error.response) {
-        // Server responded with error status
-        addBotMessage(`Sorry, I received an error from the server: ${error.response.status}. Please try again.`);
-      } else if (error.request) {
-        // Request was made but no response received
-        addBotMessage("Sorry, I couldn't connect to the server. Please check your internet connection and try again.");
-      } else {
-        // Something else happened
-        addBotMessage("Sorry, I couldn't fetch that information. Please try again.");
-      }
+      console.error('Error:', error);
+      addBotMessage("Sorry, I couldn't process that request. Please try again.");
     }
   };
 
@@ -202,7 +170,7 @@ const App = () => {
       
       if (dayMatch) {
         const dayNumber = parseInt(dayMatch[1]);
-        if (dayNumber >= 1 && dayNumber <= 3) {
+        if (dayNumber >= 1 && dayNumber <= 7) {
           fetchDaySchedule(dayNumber);
         }
       }
@@ -212,7 +180,7 @@ const App = () => {
   const fetchDaySchedule = async (day) => {
     setIsTyping(true);
     try {
-      const events = await getEventsByDay(day);
+      const events = getEventsByDay(day);
       setTimeout(() => {
         setIsTyping(false);
         const scheduleText = formatDaySchedule(day, events);
@@ -220,18 +188,8 @@ const App = () => {
       }, 800);
     } catch (error) {
       setIsTyping(false);
-      console.error('API Error:', error);
-      // Provide more specific error messages
-      if (error.response) {
-        // Server responded with error status
-        addBotMessage(`Sorry, I received an error from the server: ${error.response.status}. Please try again.`);
-      } else if (error.request) {
-        // Request was made but no response received
-        addBotMessage("Sorry, I couldn't connect to the server. Please check your internet connection and try again.");
-      } else {
-        // Something else happened
-        addBotMessage(`Sorry, couldn't fetch schedule for Day ${day}. Please try again.`);
-      }
+      console.error('Error:', error);
+      addBotMessage(`Sorry, couldn't fetch schedule for Day ${day}. Please try again.`);
     }
   };
 
